@@ -8,35 +8,43 @@ package solution
 
 // @lc code=start
 func strStr(haystack string, needle string) int {
-	// return strings.Index(haystack, needle)
-	if len(needle) == 0 {
+	if haystack == needle || needle == "" {
 		return 0
 	}
-	next := kmpNext(needle)
-	for i, j := 0; i < len(haystack); i++ {
-		for j > 0 && haystack[i] != haystack[j] {
-			j = next[j]
-		}
+	if len(needle) == 0 {
+		return -1
 	}
 
-	return -1
-
-}
-
-func kmpNext(subArray string) []int {
-	next := make([]int, len(subArray))
-	next[0] = 0
-	for i, j := 1, 0; i < len(subArray); i++ {
-		for j > 0 && subArray[i] != subArray[j] {
+	next := getNext(needle)
+	j := 0
+	for i := 0; i < len(haystack); i++ {
+		for j > 0 && haystack[i] != needle[j] {
 			j = next[j-1]
 		}
-		if subArray[i] == subArray[j] {
+		if haystack[i] == needle[j] {
+			j++
+		}
+		if j == len(needle) {
+			return i - len(needle) + 1
+		}
+	}
+	return -1
+}
+
+func getNext(needle string) []int {
+	next := make([]int, len(needle))
+	j := 0
+	for i := 1; i < len(needle); i++ {
+		for j > 0 && needle[i] != needle[j] {
+			j = next[j-1]
+		}
+
+		if needle[i] == needle[j] {
 			j++
 		}
 		next[i] = j
 	}
 	return next
-
 }
 
 // @lc code=end
