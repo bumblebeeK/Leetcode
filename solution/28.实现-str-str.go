@@ -129,6 +129,7 @@ func getNext3(p string) []int {
 			i = next[i]
 		}
 	}
+
 	return next
 
 }
