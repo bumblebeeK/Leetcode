@@ -7,7 +7,8 @@ package solution
  */
 
 // @lc code=start
-func rob(nums []int) int {
+// func rob(nums []int) int {
+func rob1(nums []int) int {
 	curv, prev := 0, 0
 	for _, v := range nums {
 		temp := curv
@@ -15,13 +16,6 @@ func rob(nums []int) int {
 		prev = temp
 	}
 	return curv
-}
-
-func Max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
 
 // @lc code=end

@@ -7,7 +7,8 @@ package solution
  */
 
 // @lc code=start
-func rob(nums []int) int {
+//func rob(nums []int) int {
+func rob2(nums []int) int {
 	if len(nums) == 1 {
 		return nums[0]
 	}
