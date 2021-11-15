@@ -26,11 +26,4 @@ func goRob(nums []int) int {
 	return cur
 }
 
-func Max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
 // @lc code=end
