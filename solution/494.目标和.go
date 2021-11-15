@@ -8,21 +8,24 @@ package solution
 
 // @lc code=start
 func findTargetSumWays(nums []int, target int) int {
-
-	sum := 0
-	for _, v := range nums {
-		sum += v
+	total := 0
+	for _, n := range nums {
+		total += n
 	}
-	if sum < target || (sum+target)%2 != 0 {
+	if target > total || (target+total)%2 == 1 || (target+total) < 0 {
 		return 0
 	}
-	p := (sum + target) / 2
-
-	dp := make([]int, p+2)
+	p := (target + total) / 2 //p 为前面为+部分的和
+	dp := make([]int, p+1)
 	dp[0] = 1
-	for _, v := range nums {
-		for i := p; i >= v; i-- {
-			dp[i] = dp[i-v] + dp[i]
+	l := len(nums)
+	for _, n := range nums {
+		l--
+		for i := p; i >= n; i-- {
+			dp[i] += dp[i-n]
+			if l == 0 {
+				return dp[p]
+			}
 		}
 	}
 	return dp[p]
