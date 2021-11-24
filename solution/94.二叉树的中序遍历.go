@@ -16,10 +16,7 @@ package solution
  * }
  */
 func inorderTraversal(root *TreeNode) []int {
-	res := []int{}
-	if root == nil {
-		return res
-	}
+	var res []int
 	LDR(&res, root)
 	return res
 }
