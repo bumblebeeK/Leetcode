@@ -18,7 +18,7 @@ func threeSumClosest(nums []int, target int) int {
 		start, end := i+1, len(nums)-1
 		for end > start {
 			sum := nums[i] + nums[start] + nums[end]
-			if sampleAbs(sum-target) < sampleAbs(ans-target) {
+			if simpleAbs(sum-target) < simpleAbs(ans-target) {
 				ans = sum
 			}
 			if sum > target {
@@ -33,7 +33,7 @@ func threeSumClosest(nums []int, target int) int {
 	return ans
 }
 
-func sampleAbs(num int) int {
+func simpleAbs(num int) int {
 	if num > 0 {
 		return num
 	} else {
