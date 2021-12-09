@@ -15,30 +15,30 @@ import (
 
 func restoreIpAddresses(s string) []string {
 	res := []string{}
-	var dfs func(subRes []string, start int)
-
-	dfs = func(subRes []string, start int) {
-		if len(subRes) == 4 && start == len(s) {
-			res = append(res, strings.Join(subRes, "."))
-			return
+	var dfs = func(subArr []string, start int) {}
+	dfs = func(subArr []string, start int) {
+		if len(subArr) == 4 {
+			if len(s) == start {
+				res = append(res, strings.Join(subArr, "."))
+				return
+			} else {
+				return
+			}
 		}
-		if len(subRes) == 4 && start < len(s) {
-			return
-		}
-		for length := 1; length <= 3; length++ {
-			if start+length-1 >= len(s) {
+		for i := 1; i <= 3; i++ {
+			if start+i-1 >= len(s) {
 				return
 			}
-			if length != 1 && s[start] == '0' {
+			if i != 1 && s[start] == 48 {
 				return
 			}
-			str := s[start : start+length]
-			if n, _ := strconv.Atoi(str); n > 255 {
+			str := s[start : start+i]
+			if ip, _ := strconv.Atoi(str); ip > 0xff {
 				return
 			}
-			subRes = append(subRes, str)
-			dfs(subRes, start+length)
-			subRes = subRes[:len(subRes)-1]
+			subArr = append(subArr, str)
+			dfs(subArr, start+i)
+			subArr = subArr[:len(subArr)-1]
 		}
 	}
 	dfs([]string{}, 0)
