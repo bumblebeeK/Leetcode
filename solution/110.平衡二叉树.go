@@ -19,24 +19,24 @@ func isBalanced(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
-	return abs(dfs(root.Left), dfs(root.Right)) <= 1 && isBalanced(root.Left) && isBalanced(root.Right)
+	return abs110(dfs110(root.Left), dfs110(root.Right)) <= 1 && isBalanced(root.Left) && isBalanced(root.Right)
 }
 
-func dfs(node *TreeNode) int {
+func dfs110(node *TreeNode) int {
 	if node == nil {
 		return 0
 	}
-	return max(dfs(node.Left), dfs(node.Right)) + 1
+	return max110(dfs110(node.Left), dfs110(node.Right)) + 1
 }
 
-func max(a, b int) int {
+func max110(a, b int) int {
 	if a > b {
 		return a
 	}
 	return b
 }
 
-func abs(a, b int) (v int) {
+func abs110(a, b int) (v int) {
 	if v = a - b; v > 0 {
 		return
 	}
