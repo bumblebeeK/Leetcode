@@ -8,14 +8,13 @@ package solution
 
 // @lc code=start
 func climbStairs(n int) int {
-	prev, curv := 0, 1
+	pre, cur := 0, 1
 	for i := 0; i < n; i++ {
-		tmp := curv
-		curv += prev
-		prev = tmp
+		tmp := cur
+		cur += pre
+		pre = tmp
 	}
-	return curv
-
+	return cur
 }
 
 // @lc code=end
