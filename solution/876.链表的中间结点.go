@@ -14,23 +14,27 @@ package solution
  *     Next *ListNode
  * }
  */
+
 func middleNode(head *ListNode) *ListNode {
-	p1, p2, cur := head, head, head
-	length := 0
+	l := 0
+	cur, target := head, head
 	for cur != nil {
-		length++
 		cur = cur.Next
+		l++
+	}
+	l = l / 2
+	for l > 0 {
+		target = target.Next
+		l--
 	}
 
-	for p2.Next != nil && p2.Next.Next != nil {
-		p1 = p1.Next
-		p2 = p2.Next.Next
-	}
-	if length%2 == 0 {
-		return p1.Next
-	} else {
-		return p1
-	}
+	return target
+
 }
 
 // @lc code=end
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
