@@ -29,21 +29,22 @@ func partition(head *ListNode, x int) *ListNode {
 	if mark == nil {
 		return head
 	}
-	tmp, last := mark.Next, mark.Next 
-	for tmp != nil {
-		if tmp.Val < x {
-			next := tmp.Next    
-			target := mark.Next 
-			mark.Next = tmp
-			tmp.Next = target
+	after, last := mark.Next, mark.Next
+	for after != nil {
+		if after.Val < x {
+			next := after.Next
+			target := mark.Next
+			mark.Next = after
+			after.Next = target
 			mark = mark.Next
-			tmp = next
-			last.Next = tmp
+			after = next
+			last.Next = after
 		} else {
-			last = tmp
-			tmp = tmp.Next
+			last = after
+			after = after.Next
 		}
 	}
+
 	return newHead.Next
 
 }
