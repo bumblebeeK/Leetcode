@@ -58,8 +58,7 @@ func partition(head *ListNode, x int) *ListNode {
 		head.Next = ln
 		return head
 	}
-	prev := &ListNode{}
-	prev.Next = ln
+	prev := &ListNode{0, ln}
 	newHead := prev
 	for ln != nil {
 		if ln.Val >= x {
@@ -72,7 +71,6 @@ func partition(head *ListNode, x int) *ListNode {
 	}
 	prev.Next = head
 	head.Next = nil
-
 	return newHead.Next
 
 }
