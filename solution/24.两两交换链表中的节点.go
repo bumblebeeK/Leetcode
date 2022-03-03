@@ -14,19 +14,29 @@ package solution
  *     Next *ListNode
  * }
  */
+// func swapPairs(head *ListNode) *ListNode {
+// 	pre, cursor := &ListNode{0, head}, head
+// 	newHead := pre
+// 	for cursor != nil && cursor.Next != nil {
+// 		tmp := cursor.Next.Next
+// 		next := cursor.Next
+// 		next.Next = cursor
+// 		pre.Next = next
+// 		cursor.Next = tmp
+// 		pre = cursor
+// 		cursor = tmp
+// 	}
+// 	return newHead.Next
+// }
+
 func swapPairs(head *ListNode) *ListNode {
-	pre, cursor := &ListNode{0, head}, head
-	newHead := pre
-	for cursor != nil && cursor.Next != nil {
-		tmp := cursor.Next.Next
-		next := cursor.Next
-		next.Next = cursor
-		pre.Next = next
-		cursor.Next = tmp
-		pre = cursor
-		cursor = tmp
+	if head == nil || head.Next == nil {
+		return head
 	}
-	return newHead.Next
+	result := head.Next
+	head.Next = swapPairs(head.Next.Next)
+	result.Next = head
+	return result
 }
 
 // @lc code=end
