@@ -1,7 +1,5 @@
 package solution
 
-import "fmt"
-
 /*
  * @lc app=leetcode.cn id=264 lang=golang
  *
