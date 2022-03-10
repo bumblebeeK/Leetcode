@@ -16,30 +16,14 @@ package solution
  * }
  */
 func isSameTree(p *TreeNode, q *TreeNode) bool {
-	if p != nil && q != nil {
-		if p.Val != q.Val {
-			return false
-		}
-	}
 	if (p == nil && q != nil) || (q == nil && p != nil) {
 		return false
 	}
 	if q == nil && p == nil {
 		return true
 	}
-	lR, rR := false, false
-	if p.Left != nil && q.Left != nil {
-		lR = isSameTree(p.Left, q.Left)
-	} else if p.Left == nil && q.Left == nil {
-		lR = true
-	}
-	if p.Right != nil && q.Right != nil {
-		rR = isSameTree(p.Right, q.Right)
-	} else if p.Right == nil && q.Right == nil {
-		rR = true
-	}
 
-	return lR && rR
+	return (p.Val == q.Val) && isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
 }
 
 // @lc code=end
