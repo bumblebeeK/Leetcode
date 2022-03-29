@@ -89,3 +89,14 @@ func insertSort(nums []int, left, right int) {
 // swapEle(nums, left, lt)
 // quickSort(nums, left, lt-1)
 // quickSort(nums, gt, right)
+
+func insertSortPractice(nums []int, left, right int) {
+	for i := right - 1; i >= 0; i-- {
+		tmp := nums[i]
+		j := i
+		for j < right && nums[j+1] > tmp {
+			nums[j] = nums[j+1]
+		}
+		nums[j] = tmp
+	}
+}
