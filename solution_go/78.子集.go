@@ -8,24 +8,20 @@ package solution
 
 // @lc code=start
 func subsets(nums []int) [][]int {
+	set := []int{}
 	ans := [][]int{}
-	n := len(nums)
-	if len(nums) == 0 {
-		return [][]int{{}}
-	}
-	var traceBack func(path []int, start int)
-	traceBack = func(path []int, start int) {
-		arr := make([]int, len(path))
-		copy(arr, path)
-		ans = append(ans, arr)
-		for i := start; i < n; i++ {
-			path = append(path, nums[i])
-			traceBack(path, i+1)
-			path = path[:len(path)-1]
+	var dfs func(cur int)
+	dfs = func(cur int) {
+		if cur == len(nums) {
+			ans = append(ans, append([]int(nil), set...))
+			return
 		}
+		set = append(set, nums[cur])
+		dfs(cur + 1)
+		set = set[:len(set)-1]
+		dfs(cur + 1)
 	}
-
-	traceBack([]int{}, 0)
+	dfs(0)
 	return ans
 }
 
