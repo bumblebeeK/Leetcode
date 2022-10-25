@@ -9,14 +9,17 @@ package solution
 // @lc code=start
 func partitionDisjoint(nums []int) int {
 	n := len(nums)
+
 	min := make([]int, n)
+
 	min[n-1] = nums[n-1]
+
 	for i := n - 2; i >= 0; i-- {
-		min[i] = Min(nums[i], min[i+1])
+		min[i] = Min(min[i+1], nums[i])
 	}
 
 	for i, max := 0, 0; i < n-1; i++ {
-		max = Max(nums[i], max)
+		max = Max(max, nums[i])
 		if max <= min[i+1] {
 			return i + 1
 		}
