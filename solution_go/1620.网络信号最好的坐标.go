@@ -11,9 +11,9 @@ import "math"
 // @lc code=start
 func bestCoordinate(towers [][]int, radius int) []int {
 	x, y, val := 0, 0, 0
-	grid := make([][]int, 110)
+	grid := make([][]int, 101)
 	for i := range grid {
-		grid[i] = make([]int, 110)
+		grid[i] = make([]int, 101)
 	}
 	for _, v := range towers {
 		a, b, q := v[0], v[1], v[2]
