@@ -10,24 +10,32 @@ import "math"
 
 // @lc code=start
 func bestCoordinate(towers [][]int, radius int) []int {
-	var ans []int
 	x, y, val := 0, 0, 0
+	grid := make([][]int, 110)
+	for i := range grid {
+		grid[i] = make([]int, 110)
+	}
 	for _, v := range towers {
-		a, b, q := v[0]-radius, v[1]-radius, v[2]
-		if a < 0 {
-			a = 0
-		}
-		if b < 0 {
-			b = 0
-		}
-		for i := a; i <= a+2*radius; i++ {
-			for j := b; j <= b+2*radius; j++ {
-				math.Sqrt()
+		a, b, q := v[0], v[1], v[2]
+		for i := int(math.Max(0, float64(a-radius))); i <= a+radius; i++ {
+			for j := int(math.Max(0, float64(b-radius))); j <= b+radius; j++ {
+				d := math.Sqrt(float64((i-a)*(i-a) + (j-b)*(j-b)))
+				if d > float64(radius) {
+					continue
+				}
+				grid[i][j] += int(math.Floor(float64(float64(q) / (1 + d))))
+				if grid[i][j] > val {
+					x, y, val = i, j, grid[i][j]
+				} else if grid[i][j] == val {
+					if i < x || (i == x && j < y) {
+						x, y = i, j
+					}
+				}
 			}
 		}
 	}
 
-	return ans
+	return []int{x, y}
 }
 
 // @lc code=end
