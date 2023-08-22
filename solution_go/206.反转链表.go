@@ -23,14 +23,14 @@ package solution
 //总而言之 每次循环将当前点与原链脱钩接上前节点
 
 func reverseList(head *ListNode) *ListNode {
-	var newHead *ListNode
+	var pre *ListNode
 	for head != nil {
 		next := head.Next
-		head.Next = newHead
-		newHead = head
+		head.Next = pre
+		pre = head
 		head = next
 	}
-	return newHead
+	return pre
 }
 
 // @lc code=end
